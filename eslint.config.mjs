@@ -1,16 +1,44 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import { defineConfig } from "eslint/config";
 import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import pluginNext from "@next/eslint-plugin-next";
+import unicorn from "eslint-plugin-unicorn";
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+  baseDirectory: import.meta.dirname,
 });
 
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-];
-
-export default eslintConfig;
+export default defineConfig([
+  ...compat.extends("next", "prettier"),
+  {
+    files: ["src/**/*.{ts,tsx}"],
+    plugins: {
+      pluginNext,
+      unicorn,
+    },
+    rules: {
+      "react/function-component-definition": [
+        "error",
+        {
+          namedComponents: "function-declaration",
+          unnamedComponents: "arrow-function",
+        },
+      ],
+      "unicorn/filename-case": [
+        "error",
+        {
+          case: "kebabCase",
+        },
+      ],
+    },
+  },
+  {
+    files: [
+      "src/app/**/{page,layout,not-found,error,global-error,route,template,default,loading}.tsx",
+    ],
+    rules: {
+      ...unicorn.configs.recommended.rules,
+      ...pluginNext.configs.recommended.rules,
+      "react/function-component-definition": "off",
+    },
+  },
+]);
