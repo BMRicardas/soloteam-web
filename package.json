@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^5.1.1",
     "@react-pdf/renderer": "^4.3.0",
     "@tanstack/react-query": "^5.81.5",
