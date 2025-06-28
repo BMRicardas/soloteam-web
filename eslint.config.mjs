@@ -29,6 +29,19 @@ export default defineConfig([
           case: "kebabCase",
         },
       ],
+      "unicorn/prevent-abbreviations": [
+        "error",
+        {
+          checkProperties: true,
+          checkVariables: true,
+          replacements: {
+            props: false, // Allow 'props' as a common abbreviation
+            ref: false, // Allow 'ref' for React refs
+            fn: false, // Allow 'fn' for function
+            err: false, // Allow 'err' for error
+          },
+        },
+      ],
     },
   },
   {
