@@ -1,0 +1,29 @@
+.radioContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.label {
+  margin-left: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.input {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
